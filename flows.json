@@ -1,0 +1,457 @@
+[
+    {
+        "id": "55506c58253883cd",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a019e5a1d53f7c50",
+        "type": "Kafka Broker",
+        "name": "",
+        "hosts": [
+            {
+                "host": "localhost",
+                "port": 9092
+            }
+        ],
+        "hostsEnvVar": "",
+        "connectTimeout": "10000",
+        "requestTimeout": "30000",
+        "autoConnect": "true",
+        "idleConnection": "5",
+        "reconnectOnIdle": "true",
+        "maxAsyncRequests": "10",
+        "checkInterval": "10",
+        "selfSign": true,
+        "usetls": false,
+        "useCredentials": false
+    },
+    {
+        "id": "ae4422d49d3ccec7",
+        "type": "mongodb3",
+        "uri": "mongodb+srv://vsk:vsk@cluster0.ppdfwil.mongodb.net/?retryWrites=true&w=majority",
+        "name": "kafka",
+        "options": "",
+        "parallelism": "-1"
+    },
+    {
+        "id": "a9f1245416fa3a31",
+        "type": "modbus-client",
+        "name": "Modbus server",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "127.0.0.1",
+        "tcpPort": "10502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": "2000",
+        "parallelUnitIdsAllowed": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "3643bacf74f7951d",
+        "type": "Kafka Broker",
+        "name": "",
+        "hosts": [
+            {
+                "host": "localhost",
+                "port": 9092
+            }
+        ],
+        "hostsEnvVar": "",
+        "connectTimeout": "10000",
+        "requestTimeout": "30000",
+        "autoConnect": "true",
+        "idleConnection": "5",
+        "reconnectOnIdle": "true",
+        "maxAsyncRequests": "10",
+        "checkInterval": "10",
+        "selfSign": true,
+        "usetls": false,
+        "useCredentials": false
+    },
+    {
+        "id": "be189f9d2a00dda4",
+        "type": "Stackhero-InfluxDB-v2-Server",
+        "name": "nodered",
+        "host": "https://us-east-1-1.aws.cloud2.influxdata.com/",
+        "port": "443",
+        "tls": true
+    },
+    {
+        "id": "d3be9f5e96b65eaa",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "nodered",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "https://us-east-1-1.aws.cloud2.influxdata.com/",
+        "timeout": "10",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "830fc8df560e3853",
+        "type": "Kafka Broker",
+        "name": "",
+        "hosts": [
+            {
+                "host": "127.0.0.1",
+                "port": 9092
+            }
+        ],
+        "hostsEnvVar": "",
+        "connectTimeout": "10000",
+        "requestTimeout": "30000",
+        "autoConnect": "true",
+        "idleConnection": "5",
+        "reconnectOnIdle": "true",
+        "maxAsyncRequests": "10",
+        "checkInterval": "10",
+        "selfSign": true,
+        "usetls": false,
+        "useCredentials": false
+    },
+    {
+        "id": "ad7a393c30ed85f5",
+        "type": "modbus-read",
+        "z": "55506c58253883cd",
+        "name": "read",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "0",
+        "quantity": "1",
+        "rate": "3",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "a9f1245416fa3a31",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 350,
+        "y": 360,
+        "wires": [
+            [
+                "1ba30e71ae5feb5d"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ad4e3d945a0ffde4",
+        "type": "modbus-write",
+        "z": "55506c58253883cd",
+        "name": "write",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "0",
+        "quantity": "1",
+        "server": "a9f1245416fa3a31",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 350,
+        "y": 280,
+        "wires": [
+            [
+                "dbbd482b2561a0c7"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "027736c6a08ed912",
+        "type": "inject",
+        "z": "55506c58253883cd",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "110",
+        "payloadType": "num",
+        "x": 170,
+        "y": 280,
+        "wires": [
+            [
+                "ad4e3d945a0ffde4"
+            ]
+        ]
+    },
+    {
+        "id": "df2dcd0f367d286a",
+        "type": "modbus-server",
+        "z": "55506c58253883cd",
+        "name": "Node-Red-Modbus",
+        "logEnabled": false,
+        "hostname": "127.0.0.1",
+        "serverPort": 10502,
+        "responseDelay": 100,
+        "delayUnit": "ms",
+        "coilsBufferSize": 10000,
+        "holdingBufferSize": 10000,
+        "inputBufferSize": 10000,
+        "discreteBufferSize": 10000,
+        "showErrors": false,
+        "x": 390,
+        "y": 140,
+        "wires": [
+            [
+                "c3aadfe3b1baca97"
+            ],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "c3aadfe3b1baca97",
+        "type": "debug",
+        "z": "55506c58253883cd",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "914cfc6a92a9d751",
+        "type": "inject",
+        "z": "55506c58253883cd",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 140,
+        "wires": [
+            [
+                "df2dcd0f367d286a"
+            ]
+        ]
+    },
+    {
+        "id": "dbbd482b2561a0c7",
+        "type": "debug",
+        "z": "55506c58253883cd",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "427d5f69a90578ee",
+        "type": "Kafka Producer",
+        "z": "55506c58253883cd",
+        "name": "",
+        "broker": "830fc8df560e3853",
+        "topic": "first",
+        "topicSlash2dot": false,
+        "requireAcks": 1,
+        "ackTimeoutMs": 100,
+        "partitionerType": 0,
+        "key": "",
+        "partition": 0,
+        "attributes": 0,
+        "connectionType": "Producer",
+        "convertFromJson": false,
+        "x": 760,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "c970a521c27465ee",
+        "type": "influxdb out",
+        "z": "55506c58253883cd",
+        "influxdb": "d3be9f5e96b65eaa",
+        "name": "nodered",
+        "measurement": "register",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "Hexrfactory",
+        "bucket": "nodered1",
+        "x": 840,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "9a59b25cc3c77192",
+        "type": "Kafka Consumer",
+        "z": "55506c58253883cd",
+        "name": "",
+        "broker": "830fc8df560e3853",
+        "regex": false,
+        "topics": [
+            {
+                "topic": "first",
+                "offset": 0,
+                "partition": 0
+            }
+        ],
+        "groupId": "kafka-node-group",
+        "autoCommit": "true",
+        "autoCommitIntervalMs": 5000,
+        "fetchMaxWaitMs": 100,
+        "fetchMinBytes": 1,
+        "fetchMaxBytes": 1048576,
+        "fromOffset": 0,
+        "encoding": "utf8",
+        "keyEncoding": "utf8",
+        "connectionType": "Consumer",
+        "convertToJson": false,
+        "x": 440,
+        "y": 560,
+        "wires": [
+            [
+                "90a138aae95dc409"
+            ]
+        ]
+    },
+    {
+        "id": "1ba30e71ae5feb5d",
+        "type": "function",
+        "z": "55506c58253883cd",
+        "name": "function 1",
+        "func": "// Extract necessary data from the incoming message\nvar payload = msg.payload;\n\n// Format the message in the desired format\nvar formattedMessage = {\n    topic: \"first\", // Change \"your_topic_name\" to your actual Kafka topic name\n    payload: payload,\n    // Add any other properties you want to include in the message\n};\n\n// Send the formatted message to the Kafka producer node\nreturn formattedMessage;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 360,
+        "wires": [
+            [
+                "427d5f69a90578ee",
+                "3969f0f546ac93ef"
+            ]
+        ]
+    },
+    {
+        "id": "90a138aae95dc409",
+        "type": "debug",
+        "z": "55506c58253883cd",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "3969f0f546ac93ef",
+        "type": "function",
+        "z": "55506c58253883cd",
+        "name": "function 2",
+        "func": "// Extract necessary data from the incoming message\n\n\n// Format the message for InfluxDB\nvar influxMessage = {\n    measurement: \"register\", // Replace \"your_measurement\" with your actual measurement name in InfluxDB\n    values:msg.payload[0], // Pass the fields object\n    \n};\n\n// Send the formatted message to the InfluxDB node\nreturn { payload: influxMessage };\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 480,
+        "wires": [
+            [
+                "c970a521c27465ee",
+                "0649b6c4f7a3e534"
+            ]
+        ]
+    },
+    {
+        "id": "0649b6c4f7a3e534",
+        "type": "debug",
+        "z": "55506c58253883cd",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 460,
+        "wires": []
+    }
+]
